@@ -85,24 +85,19 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    %% Крок 1
-    Step1("1️⃣ Крок 1:<br/>Створюємо 100")
-    
-    %% Крок 2
-    Step2["2️⃣ Крок 2:<br/>Пишемо ім'я 'score'"]
-    
-    %% Крок 3 (Дія) - ТУТ БУЛА ПОМИЛКА (додано лапки)
-    Action{"3️⃣ Крок 3:<br/>З'єднуємо"}
+    Step1["Крок 1<br/>Створюємо об'єкт 100"]
+    Step2["Крок 2<br/>Створюємо ім'я score"]
+    Action["Крок 3<br/>Зв’язуємо"]
+    Result["Готово: score → 100"]
 
-    %% Зв'язки
-    Step2 --> Action
     Step1 --> Action
-    Action --> Result["Готова змінна: score ➔ 100"]
+    Step2 --> Action
+    Action --> Result
 
-    %% Стилі
     style Step1 fill:#FFF59D,stroke:#FBC02D
     style Step2 fill:#E3F2FD,stroke:#1E88E5
     style Result fill:#C8E6C9,stroke:#43A047,stroke-width:2px
+
 ```
 
 
@@ -115,14 +110,17 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    %% Вузли з текстом у лапках для безпеки
-    A["Змінна: score"] -.->|"Старе посилання розірвано"| B("Об'єкт: 100")
-    A -->|"Нове посилання"| C("Новий Об'єкт: 200")
+    A["Змінна score"]
+    B["Об'єкт 100"]
+    C["Новий об'єкт 200"]
 
-    %% Стилі
-    style B fill:#ccc,stroke:#333,stroke-width:1px,stroke-dasharray: 5 5
-    style C fill:#f9f,stroke:#333,stroke-width:2px,color:black
-    style A fill:#ccf,stroke:#333,stroke-width:2px,color:black
+    A -.->|"Старе посилання"| B
+    A -->|"Нове посилання"| C
+
+    style B fill:#ccc,stroke:#333,stroke-dasharray:5 5
+    style C fill:#f9f,stroke:#333,stroke-width:2px
+    style A fill:#ccf,stroke:#333,stroke-width:2px
+
 ```
 
 Таким чином змінні в python це посилання на об'єкти в оперативній пам'яті.
