@@ -65,8 +65,9 @@ title: Заняття №1. Об'єкти, пам'ять, типи даних
 **Змінна** не містить даних всередині себе. Вона зберігає лише адресу місця в пам'яті, де лежить конкретний об'єкт. Це просто ім'я, яке ми використовуємо для доступу до даних.
 
 ```mermaid
-graph LR
-    A[Ім'я змінної: x] -->|Посилання| B(Об'єкт у пам'яті: 10);
+flowchart LR
+    A["Ім'я змінної: x"] -->|"Посилання"| B("Об'єкт у пам'яті: 10")
+    
     style B fill:#f9f,stroke:#333,stroke-width:2px,color:black
     style A fill:#ccf,stroke:#333,stroke-width:2px,color:black
 ```
@@ -83,15 +84,15 @@ graph LR
 3. **Зв'язування:** Ім'я `score` починає посилатися на новостворений об'єкт `100`.
 
 ```mermaid
-graph TD
+flowchart TD
     %% Крок 1
-    Step1(("1️⃣ Крок 1:<br/>Створюємо 100"))
+    Step1("1️⃣ Крок 1:<br/>Створюємо 100")
     
     %% Крок 2
     Step2["2️⃣ Крок 2:<br/>Пишемо ім'я 'score'"]
     
-    %% Крок 3 (Дія)
-    Action{3️⃣ Крок 3:<br/>З'єднуємо}
+    %% Крок 3 (Дія) - ТУТ БУЛА ПОМИЛКА (додано лапки)
+    Action{"3️⃣ Крок 3:<br/>З'єднуємо"}
 
     %% Зв'язки
     Step2 --> Action
@@ -113,9 +114,12 @@ graph TD
 
 
 ```mermaid
-graph LR
-    A[Змінна: score] -.->|Старе посилання розірвано| B(Об'єкт: 100);
-    A -->|Нове посилання| C(Новий Об'єкт: 200);
+flowchart LR
+    %% Вузли з текстом у лапках для безпеки
+    A["Змінна: score"] -.->|"Старе посилання розірвано"| B("Об'єкт: 100")
+    A -->|"Нове посилання"| C("Новий Об'єкт: 200")
+
+    %% Стилі
     style B fill:#ccc,stroke:#333,stroke-width:1px,stroke-dasharray: 5 5
     style C fill:#f9f,stroke:#333,stroke-width:2px,color:black
     style A fill:#ccf,stroke:#333,stroke-width:2px,color:black
@@ -210,24 +214,32 @@ graph LR
 
 
 ```mermaid
-graph LR
-    Data((Дані))
+flowchart LR
+    Data(("Дані"))
     
-    subgraph INT [Ціле число]
-        I[5 яблук]
-        DescI[Можна з'їсти, можна додати ще одне]
+    subgraph INT ["Ціле число"]
+        direction TB
+        I["5 яблук"]
+        DescI["Можна з'їсти,<br/>можна додати ще одне"]
     end
 
-    subgraph STR [Текст]
+    subgraph STR ["Текст"]
+        direction TB
         S["Табличка з цифрою '5'"]
-        DescS[Це просто напис на стіні.<br/>Його не можна додати до яблук]
+        DescS["Це просто напис на стіні.<br/>Його не можна додати до яблук"]
     end
 
-    Data --> INT
-    Data --> STR
+    %% Зв'язки (ведемо до конкретних елементів для надійності)
+    Data --> I
+    Data --> S
+    
+    %% Можна зробити невидимі зв'язки всередині для красивого розташування
+    I ~~~ DescI
+    S ~~~ DescS
 
-    style I fill:#bbdefb,stroke:#1976D2
-    style S fill:#c8e6c9,stroke:#388E3C
+    style I fill:#bbdefb,stroke:#1976D2,color:black
+    style S fill:#c8e6c9,stroke:#388E3C,color:black
+    style Data fill:#ffcc80,stroke:#f57c00,color:black
 ```
 
 > [!QUESTION] Подумай 
