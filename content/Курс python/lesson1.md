@@ -84,20 +84,25 @@ flowchart LR
 3. **Зв'язування:** Ім'я `score` починає посилатися на новостворений об'єкт `100`.
 
 ```mermaid
-flowchart TD
-    Step1["Крок 1<br/>Створюємо об'єкт 100"]
-    Step2["Крок 2<br/>Створюємо ім'я score"]
-    Action["Крок 3<br/>Зв’язуємо"]
-    Result["Готово: score → 100"]
+graph TD
+    %% Крок 1
+    Step1(("1️⃣ Крок 1:<br/>Створюємо 100"))
 
-    Step1 --> Action
+    %% Крок 2
+    Step2["2️⃣ Крок 2:<br/>Пишемо ім'я 'score'"]
+
+    %% Крок 3 (Дія) - ТУТ БУЛА ПОМИЛКА (додано лапки "")
+    Action{"3️⃣ Крок 3:<br/>З'єднуємо"}
+
+    %% Зв'язки
     Step2 --> Action
-    Action --> Result
+    Step1 --> Action
+    Action --> Result["Готова змінна: score ➔ 100"]
 
+    %% Стилі
     style Step1 fill:#FFF59D,stroke:#FBC02D
     style Step2 fill:#E3F2FD,stroke:#1E88E5
     style Result fill:#C8E6C9,stroke:#43A047,stroke-width:2px
-
 ```
 
 
@@ -215,29 +220,38 @@ flowchart LR
 flowchart LR
     Data(("Дані"))
     
-    subgraph INT ["Ціле число"]
+    subgraph INT ["Ціле число (Integer)"]
         direction TB
         I["5 яблук"]
         DescI["Можна з'їсти,<br/>можна додати ще одне"]
     end
 
-    subgraph STR ["Текст"]
+    subgraph STR ["Текст (String)"]
         direction TB
         S["Табличка з цифрою '5'"]
         DescS["Це просто напис на стіні.<br/>Його не можна додати до яблук"]
     end
 
-    %% Зв'язки (ведемо до конкретних елементів для надійності)
+    %% Зв'язки
     Data --> I
     Data --> S
     
-    %% Можна зробити невидимі зв'язки всередині для красивого розташування
+    %% Невидимі зв'язки для розташування
     I ~~~ DescI
     S ~~~ DescS
 
-    style I fill:#bbdefb,stroke:#1976D2,color:black
-    style S fill:#c8e6c9,stroke:#388E3C,color:black
-    style Data fill:#ffcc80,stroke:#f57c00,color:black
+    %% --- СТИЛІЗАЦІЯ ---
+    
+    %% Головний вузол (Помаранчевий)
+    style Data fill:#ffcc80,stroke:#f57c00,color:black,stroke-width:2px
+
+    %% Блок чисел (Синій)
+    style I fill:#bbdefb,stroke:#1976D2,color:black,stroke-width:2px
+    style DescI fill:#e3f2fd,stroke:#bbdefb,color:black,stroke-dasharray: 5 5
+
+    %% Блок тексту (Зелений)
+    style S fill:#c8e6c9,stroke:#388E3C,color:black,stroke-width:2px
+    style DescS fill:#e8f5e9,stroke:#c8e6c9,color:black,stroke-dasharray: 5 5
 ```
 
 > [!QUESTION] Подумай 
