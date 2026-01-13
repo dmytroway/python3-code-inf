@@ -1,7 +1,7 @@
 @use "./base.scss";
-/* --- Custom Callouts Start --- */
+/* --- Custom Callouts Fix Start --- */
 
-/* Загальні налаштування для заміни іконок */
+/* 1. Спочатку жорстко ховаємо стандартні SVG іконки для ваших типів */
 .callout[data-callout="teorema"] .callout-icon svg,
 .callout[data-callout="term"] .callout-icon svg,
 .callout[data-callout="formula"] .callout-icon svg,
@@ -9,9 +9,10 @@
 .callout[data-callout="light-purple"] .callout-icon svg,
 .callout[data-callout="light-green"] .callout-icon svg,
 .callout[data-callout="light-yellow"] .callout-icon svg {
-  display: none; /* Ховаємо стандартну іконку */
+  display: none !important; /* !important гарантує зникнення */
 }
 
+/* 2. Налаштовуємо контейнер: задаємо розмір, щоб фонова картинка з'явилась */
 .callout[data-callout="teorema"] .callout-icon,
 .callout[data-callout="term"] .callout-icon,
 .callout[data-callout="formula"] .callout-icon,
@@ -19,69 +20,69 @@
 .callout[data-callout="light-purple"] .callout-icon,
 .callout[data-callout="light-green"] .callout-icon,
 .callout[data-callout="light-yellow"] .callout-icon {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 1.2rem !important;  /* Примусова ширина */
+  height: 1.2rem !important; /* Примусова висота */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  width: 1rem; 
-  height: 1rem;
 }
 
-/* 1. Teorema (BookOpen, #f4c96c) */
+/* 3. Тепер додаємо самі іконки та кольори */
+
+/* Teorema */
 .callout[data-callout="teorema"] {
   --color: #f4c96c;
   --bg: #f4c96c20;
   --border: #f4c96c;
 }
 .callout[data-callout="teorema"] .callout-icon {
-  /* Іконка BookOpen */
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23f4c96c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>');
 }
 
-/* 2. Term (BookType, #99b1cc) */
+/* Term */
 .callout[data-callout="term"] {
   --color: #99b1cc;
   --bg: #99b1cc20;
   --border: #99b1cc;
 }
 .callout[data-callout="term"] .callout-icon {
-  /* Іконка BookType */
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2399b1cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M16 8V6H8v2"/><path d="M12 6v7"/><path d="M10 13h4"/></svg>');
 }
 
-/* 3. Formula (BadgeAlert, #5059d7) */
+/* Formula */
 .callout[data-callout="formula"] {
   --color: #5059d7;
   --bg: #5059d720;
   --border: #5059d7;
 }
 .callout[data-callout="formula"] .callout-icon {
-  /* Іконка BadgeAlert */
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%235059d7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.78 4.78 4 4 0 0 1-6.74 0 4 4 0 0 1-4.78-4.78z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>');
 }
 
-/* 4. Video (Video, #f8aaea) */
+/* Video */
 .callout[data-callout="video"] {
   --color: #f8aaea;
   --bg: #f8aaea20;
   --border: #f8aaea;
 }
 .callout[data-callout="video"] .callout-icon {
-  /* Іконка Video */
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23f8aaea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>');
 }
 
-/* 5. Light Purple (BookText, #c580e5) */
+/* Light Purple */
 .callout[data-callout="light-purple"] {
   --color: #c580e5;
   --bg: #c580e520;
   --border: #c580e5;
 }
-/* Спільна іконка BookText для серії light */
 .callout[data-callout="light-purple"] .callout-icon {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23c580e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6"/><path d="M8 11h6"/></svg>');
 }
 
-/* 6. Light Green (BookText, #9de798) */
+/* Light Green */
 .callout[data-callout="light-green"] {
   --color: #9de798;
   --bg: #9de79820;
@@ -91,7 +92,7 @@
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%239de798" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6"/><path d="M8 11h6"/></svg>');
 }
 
-/* 7. Light Yellow (BookText, #eaf093) */
+/* Light Yellow */
 .callout[data-callout="light-yellow"] {
   --color: #eaf093;
   --bg: #eaf09320;
@@ -100,5 +101,4 @@
 .callout[data-callout="light-yellow"] .callout-icon {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23eaf093" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6"/><path d="M8 11h6"/></svg>');
 }
-/* --- Custom Callouts End --- */
-// put your custom CSS here!
+/* --- Custom Callouts Fix End --- */
