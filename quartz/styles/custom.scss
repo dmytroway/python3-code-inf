@@ -1,140 +1,121 @@
 @use "./base.scss";
 
-/* === CUSTOM CALLOUTS FIX === */
+/* ==============================================
+   1. MERMAID DIAGRAMS (Діаграми)
+   ============================================== */
 
-/* 1. ПРИХОВУЄМО СТАНДАРТНИЙ ОЛІВЕЦЬ (SVG) */
-/* Використовуємо !important, щоб точно перебити налаштування Quartz */
-.callout[data-callout="teorema"] .callout-title .callout-icon svg,
-.callout[data-callout="term"] .callout-title .callout-icon svg,
-.callout[data-callout="formula"] .callout-title .callout-icon svg,
-.callout[data-callout="video"] .callout-title .callout-icon svg,
-.callout[data-callout="light-purple"] .callout-title .callout-icon svg,
-.callout[data-callout="light-green"] .callout-title .callout-icon svg,
-.callout[data-callout="light-yellow"] .callout-title .callout-icon svg {
-    display: none !important;
+/* Базові налаштування: Центрування та скрол */
+.mermaid {
+  display: flex !important;
+  justify-content: center;
+  background-color: transparent !important;
+  overflow-x: auto; /* Горизонтальний скрол для широких схем */
+  margin: 2rem 0;
 }
 
-/* 2. НАЛАШТОВУЄМО МІСЦЕ ПІД НОВУ ІКОНКУ */
-.callout[data-callout="teorema"] .callout-title .callout-icon,
-.callout[data-callout="term"] .callout-title .callout-icon,
-.callout[data-callout="formula"] .callout-title .callout-icon,
-.callout[data-callout="video"] .callout-title .callout-icon,
-.callout[data-callout="light-purple"] .callout-title .callout-icon,
-.callout[data-callout="light-green"] .callout-title .callout-icon,
-.callout[data-callout="light-yellow"] .callout-title .callout-icon {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 1.25rem !important;  /* Фіксована ширина */
-    height: 1.25rem !important; /* Фіксована висота */
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
+/* Ми НЕ додаємо сюди інверсію кольорів, 
+   тому діаграми залишаться кольоровими і в темній темі.
+*/
+
+
+/* ==============================================
+   2. CUSTOM CALLOUTS (Кольорові блоки)
+   ============================================== */
+
+/* Глобальні налаштування для ВАШИХ блоків
+   Це стосується: teorema, term, formula, video, light-purple/green/yellow */
+.callout[data-callout="teorema"],
+.callout[data-callout="term"],
+.callout[data-callout="formula"],
+.callout[data-callout="video"],
+.callout[data-callout="light-purple"],
+.callout[data-callout="light-green"],
+.callout[data-callout="light-yellow"] {
+
+    /* --- А. Прибираємо іконки повністю --- */
+    .callout-icon {
+        display: none !important;
+    }
+
+    /* --- Б. Вирівнюємо текст (бо іконки немає) --- */
+    .callout-content {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+    }
+    .callout-title {
+        padding-left: 0.5rem !important; /* Невеликий відступ заголовка */
+    }
+
+    /* --- В. Стиль рамки --- */
+    border-left-width: 5px !important;
+    border-radius: 8px;
+    opacity: 1 !important;
+
+    /* --- Г. КРИТИЧНО ВАЖЛИВО: Колір тексту --- */
+    /* Оскільки фони світлі, текст МАЄ бути темним завжди, 
+       навіть якщо увімкнена темна тема сайту */
+    color: #222 !important; 
 }
 
-/* 3. КОЛЬОРИ ТА ІКОНКИ (SVG Data URI) */
-/* Для --border додано "66" в кінці кольору = ~40% прозорості для м'якої рамки */
+/* Робимо жирний текст і посилання всередині блоків теж темними */
+.callout[data-callout="teorema"] strong, .callout[data-callout="teorema"] a,
+.callout[data-callout="term"] strong, .callout[data-callout="term"] a,
+.callout[data-callout="formula"] strong, .callout[data-callout="formula"] a,
+.callout[data-callout="video"] strong, .callout[data-callout="video"] a,
+.callout[data-callout="light-purple"] strong, .callout[data-callout="light-purple"] a,
+.callout[data-callout="light-green"] strong, .callout[data-callout="light-green"] a,
+.callout[data-callout="light-yellow"] strong, .callout[data-callout="light-yellow"] a {
+    color: #000 !important;
+}
 
-/* Teorema: BookOpen, #f4c96c */
+
+/* --- Д. Налаштування кольорів для кожного типу --- */
+
+/* 1. Teorema (Жовто-гарячий) */
 .callout[data-callout="teorema"] {
   --color: #f4c96c;
-  --bg: #f4c96c20;
-  --border: #f4c96c66; 
-}
-.callout[data-callout="teorema"] .callout-title .callout-icon {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23f4c96c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>') !important;
+  --bg: #f4c96c33; /* 33 в кінці - це прозорість */
+  --border: #f4c96c;
 }
 
-/* Term: BookType, #99b1cc */
+/* 2. Term (Сіро-блакитний) */
 .callout[data-callout="term"] {
   --color: #99b1cc;
-  --bg: #99b1cc20;
-  --border: #99b1cc66;
-}
-.callout[data-callout="term"] .callout-title .callout-icon {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2399b1cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M16 8V6H8v2"/><path d="M12 6v7"/><path d="M10 13h4"/></svg>') !important;
+  --bg: #99b1cc33;
+  --border: #99b1cc;
 }
 
-/* Formula: BadgeAlert, #5059d7 */
+/* 3. Formula (Індиго) */
 .callout[data-callout="formula"] {
   --color: #5059d7;
-  --bg: #5059d720;
-  --border: #5059d766;
-}
-.callout[data-callout="formula"] .callout-title .callout-icon {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%235059d7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.78 4.78 4 4 0 0 1-6.74 0 4 4 0 0 1-4.78-4.78z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>') !important;
+  --bg: #5059d733;
+  --border: #5059d7;
 }
 
-/* Video: Video, #f8aaea */
+/* 4. Video (Рожевий) */
 .callout[data-callout="video"] {
   --color: #f8aaea;
-  --bg: #f8aaea20;
-  --border: #f8aaea66;
-}
-.callout[data-callout="video"] .callout-title .callout-icon {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23f8aaea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>') !important;
+  --bg: #f8aaea33;
+  --border: #f8aaea;
 }
 
-/* Light Purple: BookText, #c580e5 */
+/* 5. Light Purple */
 .callout[data-callout="light-purple"] {
   --color: #c580e5;
-  --bg: #c580e520;
-  --border: #c580e566;
-}
-.callout[data-callout="light-purple"] .callout-title .callout-icon {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23c580e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6"/><path d="M8 11h6"/></svg>') !important;
+  --bg: #c580e533;
+  --border: #c580e5;
 }
 
-/* Light Green: BookText, #9de798 */
+/* 6. Light Green */
 .callout[data-callout="light-green"] {
   --color: #9de798;
-  --bg: #9de79820;
-  --border: #9de79866;
-}
-.callout[data-callout="light-green"] .callout-title .callout-icon {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%239de798" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6"/><path d="M8 11h6"/></svg>') !important;
+  --bg: #9de79833;
+  --border: #9de798;
 }
 
-/* Light Yellow: BookText, #eaf093 */
+/* 7. Light Yellow */
 .callout[data-callout="light-yellow"] {
   --color: #eaf093;
-  --bg: #eaf09320;
-  --border: #eaf09366;
-}
-.callout[data-callout="light-yellow"] .callout-title .callout-icon {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23eaf093" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6"/><path d="M8 11h6"/></svg>') !important;
-}
-/* --- Mermaid Obsidian Dark Mode Style --- */
-
-/* Тільки для темної теми */
-:root[saved-theme="dark"] .mermaid {
-  
-  /* 1. Всі прямокутники, круги та ромби робимо темно-сірими */
-  g.node rect, g.node circle, g.node polygon, g.node path {
-    fill: #1e1e1e !important; /* Колір фону блоків (темний) */
-    stroke: #b3b3b3 !important; /* Колір рамки (світло-сірий) */
-  }
-
-  /* 2. Текст робимо білим */
-  .nodeLabel, .label, .node text, text.actor {
-    color: #ffffff !important;
-    fill: #ffffff !important;
-  }
-
-  /* 3. Лінії стрілок робимо світлими */
-  .edgePath .path, .flowchart-link {
-    stroke: #888 !important;
-  }
-  
-  /* 4. Наконечники стрілок */
-  .marker {
-    fill: #888 !important;
-    stroke: #888 !important;
-  }
-  
-  /* 5. Сабграфи (рамки груп) */
-  g.cluster rect {
-    fill: #141414 !important; /* Ще темніший фон для груп */
-    stroke: #444 !important;
-  }
+  --bg: #eaf09333;
+  --border: #eaf093;
 }
