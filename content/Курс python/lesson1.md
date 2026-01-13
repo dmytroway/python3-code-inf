@@ -219,28 +219,22 @@ flowchart LR
 ```mermaid
 graph TD
     %% Головний вузол
-    Root(("🔢 Дані: <br/>Що таке 5?"))
+    Root(("🔢 Дані"))
 
-    %% Гілка Цілого числа
-    Root -->|Варіант А| IntBlock[/"🟦 Ціле число (int)"/]
-    IntBlock --> Ex1["🍏 5 яблук"]
-    Ex1 --> Act1["Можна додати ще одне<br/>(5 + 1 = 6)"]
+    %% Гілка чисел
+    Root -->|Число| IntNode[/"🟦 5 яблук"/]
+    IntNode --> IntDesc["Можна додати ще одне<br/>(5+1=6)"]
 
-    %% Гілка Тексту
-    Root -->|Варіант Б| StrBlock[/"🟩 Текст (str)"/]
-    StrBlock --> Ex2["📝 Напис на стіні '5'"]
-    Ex2 --> Act2["Не можна додавати<br/>(Це просто малюнок)"]
+    %% Гілка тексту
+    Root -->|Текст| StrNode[/"🟩 Напис '5'"/]
+    StrNode --> StrDesc["Це просто малюнок.<br/>Додавати не можна"]
 
-    %% Стилізація
+    %% Стилі (Явний чорний колір тексту для читабельності)
     style Root fill:#ffcc80,stroke:#f57c00,color:black
-    
-    style IntBlock fill:#bbdefb,stroke:#1976D2,color:black
-    style Ex1 fill:#e3f2fd,stroke:#1976D2,color:black
-    style Act1 fill:#fff,stroke:#1976D2,stroke-dasharray: 5 5,color:black
-
-    style StrBlock fill:#c8e6c9,stroke:#388E3C,color:black
-    style Ex2 fill:#e8f5e9,stroke:#388E3C,color:black
-    style Act2 fill:#fff,stroke:#388E3C,stroke-dasharray: 5 5,color:black
+    style IntNode fill:#bbdefb,stroke:#1976D2,color:black
+    style StrNode fill:#c8e6c9,stroke:#388E3C,color:black
+    style IntDesc fill:#e3f2fd,stroke:#bbdefb,color:black,stroke-dasharray: 5 5
+    style StrDesc fill:#e8f5e9,stroke:#c8e6c9,color:black,stroke-dasharray: 5 5
 ```
 
 > [!QUESTION] Подумай 
