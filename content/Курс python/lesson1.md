@@ -220,38 +220,30 @@ flowchart LR
 flowchart LR
     Data(("Дані"))
     
-    subgraph INT ["Ціле число (Integer)"]
+    subgraph GroupInteger ["Ціле число"]
         direction TB
-        I["5 яблук"]
+        NodeI["5 яблук"]
         DescI["Можна з'їсти,<br/>можна додати ще одне"]
     end
 
-    subgraph STR ["Текст (String)"]
+    subgraph GroupString ["Текст"]
         direction TB
-        S["Табличка з цифрою '5'"]
+        NodeS["Табличка з цифрою '5'"]
         DescS["Це просто напис на стіні.<br/>Його не можна додати до яблук"]
     end
 
     %% Зв'язки
-    Data --> I
-    Data --> S
+    Data --> NodeI
+    Data --> NodeS
     
-    %% Невидимі зв'язки для розташування
-    I ~~~ DescI
-    S ~~~ DescS
+    %% Невидимі зв'язки
+    NodeI ~~~ DescI
+    NodeS ~~~ DescS
 
-    %% --- СТИЛІЗАЦІЯ ---
-    
-    %% Головний вузол (Помаранчевий)
-    style Data fill:#ffcc80,stroke:#f57c00,color:black,stroke-width:2px
-
-    %% Блок чисел (Синій)
-    style I fill:#bbdefb,stroke:#1976D2,color:black,stroke-width:2px
-    style DescI fill:#e3f2fd,stroke:#bbdefb,color:black,stroke-dasharray: 5 5
-
-    %% Блок тексту (Зелений)
-    style S fill:#c8e6c9,stroke:#388E3C,color:black,stroke-width:2px
-    style DescS fill:#e8f5e9,stroke:#c8e6c9,color:black,stroke-dasharray: 5 5
+    %% Стилі (вони працюватимуть у світлій темі, а в темній їх перекриє наш новий CSS)
+    style NodeI fill:#bbdefb,stroke:#1976D2,stroke-width:2px
+    style NodeS fill:#c8e6c9,stroke:#388E3C,stroke-width:2px
+    style Data fill:#ffcc80,stroke:#f57c00,stroke-width:2px
 ```
 
 > [!QUESTION] Подумай 
