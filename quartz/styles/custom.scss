@@ -1,3 +1,131 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+/* === CUSTOM CALLOUTS FIX === */
+
+/* 1. ПРИХОВУЄМО СТАНДАРТНИЙ ОЛІВЕЦЬ (SVG) */
+/* Використовуємо !important, щоб точно перебити налаштування Quartz */
+.callout[data-callout="teorema"] .callout-title .callout-icon svg,
+.callout[data-callout="term"] .callout-title .callout-icon svg,
+.callout[data-callout="formula"] .callout-title .callout-icon svg,
+.callout[data-callout="video"] .callout-title .callout-icon svg,
+.callout[data-callout="light-purple"] .callout-title .callout-icon svg,
+.callout[data-callout="light-green"] .callout-title .callout-icon svg,
+.callout[data-callout="light-yellow"] .callout-title .callout-icon svg {
+    display: none !important;
+}
+
+/* 2. НАЛАШТОВУЄМО МІСЦЕ ПІД НОВУ ІКОНКУ */
+.callout[data-callout="teorema"] .callout-title .callout-icon,
+.callout[data-callout="term"] .callout-title .callout-icon,
+.callout[data-callout="formula"] .callout-title .callout-icon,
+.callout[data-callout="video"] .callout-title .callout-icon,
+.callout[data-callout="light-purple"] .callout-title .callout-icon,
+.callout[data-callout="light-green"] .callout-title .callout-icon,
+.callout[data-callout="light-yellow"] .callout-title .callout-icon {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem !important;  /* Фіксована ширина */
+    height: 1.25rem !important; /* Фіксована висота */
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+
+/* 3. КОЛЬОРИ ТА ІКОНКИ (SVG Data URI) */
+/* Для --border додано "66" в кінці кольору = ~40% прозорості для м'якої рамки */
+
+/* Teorema: BookOpen, #f4c96c */
+.callout[data-callout="teorema"] {
+  --color: #f4c96c;
+  --bg: #f4c96c20;
+  --border: #f4c96c66; 
+}
+.callout[data-callout="teorema"] .callout-title .callout-icon {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23f4c96c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>') !important;
+}
+
+/* Term: BookType, #99b1cc */
+.callout[data-callout="term"] {
+  --color: #99b1cc;
+  --bg: #99b1cc20;
+  --border: #99b1cc66;
+}
+.callout[data-callout="term"] .callout-title .callout-icon {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2399b1cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M16 8V6H8v2"/><path d="M12 6v7"/><path d="M10 13h4"/></svg>') !important;
+}
+
+/* Formula: BadgeAlert, #5059d7 */
+.callout[data-callout="formula"] {
+  --color: #5059d7;
+  --bg: #5059d720;
+  --border: #5059d766;
+}
+.callout[data-callout="formula"] .callout-title .callout-icon {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%235059d7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.78 4.78 4 4 0 0 1-6.74 0 4 4 0 0 1-4.78-4.78z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>') !important;
+}
+
+/* Video: Video, #f8aaea */
+.callout[data-callout="video"] {
+  --color: #f8aaea;
+  --bg: #f8aaea20;
+  --border: #f8aaea66;
+}
+.callout[data-callout="video"] .callout-title .callout-icon {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23f8aaea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>') !important;
+}
+
+/* Light Purple: BookText, #c580e5 */
+.callout[data-callout="light-purple"] {
+  --color: #c580e5;
+  --bg: #c580e520;
+  --border: #c580e566;
+}
+.callout[data-callout="light-purple"] .callout-title .callout-icon {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23c580e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6"/><path d="M8 11h6"/></svg>') !important;
+}
+
+/* Light Green: BookText, #9de798 */
+.callout[data-callout="light-green"] {
+  --color: #9de798;
+  --bg: #9de79820;
+  --border: #9de79866;
+}
+.callout[data-callout="light-green"] .callout-title .callout-icon {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%239de798" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6"/><path d="M8 11h6"/></svg>') !important;
+}
+
+/* Light Yellow: BookText, #eaf093 */
+.callout[data-callout="light-yellow"] {
+  --color: #eaf093;
+  --bg: #eaf09320;
+  --border: #eaf09366;
+}
+.callout[data-callout="light-yellow"] .callout-title .callout-icon {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23eaf093" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6"/><path d="M8 11h6"/></svg>') !important;
+}
+/* --- Mermaid Dark Mode Fix --- */
+
+/* 1. Робимо текст у вузлах діаграм чорним (для контрасту зі світлими блоками) */
+:root[saved-theme="dark"] .mermaid .nodeLabel,
+:root[saved-theme="dark"] .mermaid .label,
+:root[saved-theme="dark"] .mermaid .node text,
+:root[saved-theme="dark"] .mermaid text.actor {
+  color: #000000 !important;
+  fill: #000000 !important;
+  font-weight: 600; /* Робимо жирнішим для кращого читання */
+}
+
+/* 2. Якщо лінії теж погано видно, робимо їх світлішими */
+:root[saved-theme="dark"] .mermaid .edgePath .path {
+  stroke: #aeaeae !important;
+}
+:root[saved-theme="dark"] .mermaid .flowchart-link {
+  stroke: #aeaeae !important;
+}
+
+/* 3. Виправляємо стрілки */
+:root[saved-theme="dark"] .mermaid .marker {
+  fill: #aeaeae !important;
+  stroke: #aeaeae !important;
+}
