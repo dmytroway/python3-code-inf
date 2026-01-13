@@ -217,33 +217,30 @@ flowchart LR
 
 
 ```mermaid
-flowchart LR
-    Data(("Дані"))
+graph TD
+    %% Головний вузол
+    Root(("🔢 Дані: <br/>Що таке 5?"))
+
+    %% Гілка Цілого числа
+    Root -->|Варіант А| IntBlock[/"🟦 Ціле число (int)"/]
+    IntBlock --> Ex1["🍏 5 яблук"]
+    Ex1 --> Act1["Можна додати ще одне<br/>(5 + 1 = 6)"]
+
+    %% Гілка Тексту
+    Root -->|Варіант Б| StrBlock[/"🟩 Текст (str)"/]
+    StrBlock --> Ex2["📝 Напис на стіні '5'"]
+    Ex2 --> Act2["Не можна додавати<br/>(Це просто малюнок)"]
+
+    %% Стилізація
+    style Root fill:#ffcc80,stroke:#f57c00,color:black
     
-    subgraph GroupInteger ["Ціле число"]
-        direction TB
-        NodeI["5 яблук"]
-        DescI["Можна з'їсти,<br/>можна додати ще одне"]
-    end
+    style IntBlock fill:#bbdefb,stroke:#1976D2,color:black
+    style Ex1 fill:#e3f2fd,stroke:#1976D2,color:black
+    style Act1 fill:#fff,stroke:#1976D2,stroke-dasharray: 5 5,color:black
 
-    subgraph GroupString ["Текст"]
-        direction TB
-        NodeS["Табличка з цифрою '5'"]
-        DescS["Це просто напис на стіні.<br/>Його не можна додати до яблук"]
-    end
-
-    %% Зв'язки
-    Data --> NodeI
-    Data --> NodeS
-    
-    %% Невидимі зв'язки
-    NodeI ~~~ DescI
-    NodeS ~~~ DescS
-
-    %% Стилі (вони працюватимуть у світлій темі, а в темній їх перекриє наш новий CSS)
-    style NodeI fill:#bbdefb,stroke:#1976D2,stroke-width:2px
-    style NodeS fill:#c8e6c9,stroke:#388E3C,stroke-width:2px
-    style Data fill:#ffcc80,stroke:#f57c00,stroke-width:2px
+    style StrBlock fill:#c8e6c9,stroke:#388E3C,color:black
+    style Ex2 fill:#e8f5e9,stroke:#388E3C,color:black
+    style Act2 fill:#fff,stroke:#388E3C,stroke-dasharray: 5 5,color:black
 ```
 
 > [!QUESTION] Подумай 
