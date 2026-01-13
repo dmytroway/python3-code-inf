@@ -104,3 +104,28 @@
 .callout[data-callout="light-yellow"] .callout-title .callout-icon {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23eaf093" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6"/><path d="M8 11h6"/></svg>') !important;
 }
+/* --- Mermaid Dark Mode Fix --- */
+
+/* 1. Робимо текст у вузлах діаграм чорним (для контрасту зі світлими блоками) */
+:root[saved-theme="dark"] .mermaid .nodeLabel,
+:root[saved-theme="dark"] .mermaid .label,
+:root[saved-theme="dark"] .mermaid .node text,
+:root[saved-theme="dark"] .mermaid text.actor {
+  color: #000000 !important;
+  fill: #000000 !important;
+  font-weight: 600; /* Робимо жирнішим для кращого читання */
+}
+
+/* 2. Якщо лінії теж погано видно, робимо їх світлішими */
+:root[saved-theme="dark"] .mermaid .edgePath .path {
+  stroke: #aeaeae !important;
+}
+:root[saved-theme="dark"] .mermaid .flowchart-link {
+  stroke: #aeaeae !important;
+}
+
+/* 3. Виправляємо стрілки */
+:root[saved-theme="dark"] .mermaid .marker {
+  fill: #aeaeae !important;
+  stroke: #aeaeae !important;
+}
